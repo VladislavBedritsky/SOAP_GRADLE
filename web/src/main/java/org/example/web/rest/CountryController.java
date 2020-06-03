@@ -12,10 +12,11 @@ public class CountryController {
     @GetMapping
     public Country getCountry() {
         Country country = new Country();
+        country.setId(1);
         country.setName("Russia");
         country.setCapital("Moscow");
-        country.setCurrency(Currency.EUR);
-        country.setPopulation(1000);
+        country.setCurrency(Currency.RUB);
+        country.setPopulation("1000");
         return country;
     }
 
