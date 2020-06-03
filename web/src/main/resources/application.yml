@@ -1,2 +1,8 @@
 server:
   port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://database-1.cprqakodnmef.eu-central-1.rds.amazonaws.com:3306/soap
+    username: admin
+    password: password123

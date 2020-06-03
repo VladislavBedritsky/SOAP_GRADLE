@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CountryController {
 
-
     @GetMapping
     public Country getCountry() {
         Country country = new Country();

@@ -1,3 +1,5 @@
 rootProject.name = 'soap'
 
 include ':web'
+include ':backend'
+

@@ -2,7 +2,7 @@ buildscript {
     ext {
         depManagementVerion = "1.0.9.RELEASE"
         grettyVersion = "3.0.3"
-        springBootVersion = '2.0.1.RELEASE'
+        springBootVersion = '2.2.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -43,24 +43,23 @@ subprojects {
         wsdl4j_version = "1.6.1"
         jaxb_xjc_version = "2.2.4-1"
         tomcat_version = "9.0.35"
+        mysql_version = "8.0.18"
     }
 
     dependencyManagement {
 
         dependencies {
-            dependency group: 'org.example', name: 'web', version: "${project.version}"
             dependencySet(group: 'org.springframework.boot', version: "${springBootVersion}") {
                 entry 'spring-boot-starter-jetty'
                 entry 'spring-boot-starter-web-services'
+                entry 'spring-boot-starter-data-jdbc'
             }
-            dependencySet(group:'org.slf4j', version: "${slf4j_version}") {
-                entry 'slf4j-api'
-                entry 'slf4j-log4j12'
-            }
+            dependency "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcat_version}"
+
             dependency "junit:junit:${junit_version}"
             dependency "wsdl4j:wsdl4j:${wsdl4j_version}"
             dependency "com.sun.xml.bind:jaxb-xjc:${jaxb_xjc_version}"
-            dependency "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcat_version}"
+            dependency "mysql:mysql-connector-java:${mysql_version}"
         }
     }
 }
