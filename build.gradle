@@ -1,9 +1,18 @@
 buildscript {
+    ext {
+        depManagementVerion = "1.0.9.RELEASE"
+        grettyVersion = "3.0.3"
+        springBootVersion = '2.0.1.RELEASE'
+    }
     repositories {
-        maven { url 'https://repo.spring.io/plugins-snapshot' }
+        mavenCentral()
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath 'io.spring.gradle:dependency-management-plugin:1.0.7.BUILD-SNAPSHOT'
+        classpath "io.spring.gradle:dependency-management-plugin:${depManagementVerion}"
+        classpath "gradle.plugin.org.gretty:gretty:${grettyVersion}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     }
 }
 
@@ -20,32 +29,41 @@ subprojects {
     }
 
     apply plugin: "java"
+    apply plugin: 'eclipse'
     apply plugin: "idea"
     apply plugin: "io.spring.dependency-management"
+    apply plugin: 'org.springframework.boot'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
     ext {
-        SLF4J_VERSION = '1.7.10'
-        JUNIT_VERSION = '4.12'
+        slf4j_version = '1.7.10'
+        junit_version = '4.12'
+        wsdl4j_version = "1.6.1"
+        jaxb_xjc_version = "2.2.4-1"
+        tomcat_version = "9.0.35"
     }
 
     dependencyManagement {
+
         dependencies {
             dependency group: 'org.example', name: 'web', version: "${project.version}"
-
-            dependencySet(group:'org.slf4j', version: "${SLF4J_VERSION}") {
+            dependencySet(group: 'org.springframework.boot', version: "${springBootVersion}") {
+                entry 'spring-boot-starter-jetty'
+                entry 'spring-boot-starter-web-services'
+            }
+            dependencySet(group:'org.slf4j', version: "${slf4j_version}") {
                 entry 'slf4j-api'
                 entry 'slf4j-log4j12'
             }
-
-            dependency "junit:junit:${JUNIT_VERSION}"
+            dependency "junit:junit:${junit_version}"
+            dependency "wsdl4j:wsdl4j:${wsdl4j_version}"
+            dependency "com.sun.xml.bind:jaxb-xjc:${jaxb_xjc_version}"
+            dependency "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcat_version}"
         }
     }
 }
-
-
 
 
 
