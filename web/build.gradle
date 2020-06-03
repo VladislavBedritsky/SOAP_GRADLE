@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.example'
+version '1.01'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.slf4j:slf4j-api"
+
+    testCompile "junit:junit"
+}
