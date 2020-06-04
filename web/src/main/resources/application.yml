@@ -6,3 +6,5 @@ spring:
     url: jdbc:mysql://database-1.cprqakodnmef.eu-central-1.rds.amazonaws.com:3306/soap
     username: admin
     password: password123
+    initialization-mode: always
+    platform: mysql
