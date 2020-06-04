@@ -1,5 +1,6 @@
 rootProject.name = 'soap'
 
-include ':web'
-include ':backend'
+include 'web'
+include 'backend'
+include 'domain'
 

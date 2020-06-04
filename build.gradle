@@ -29,7 +29,6 @@ subprojects {
     }
 
     apply plugin: "java"
-    apply plugin: 'eclipse'
     apply plugin: "idea"
     apply plugin: "io.spring.dependency-management"
     apply plugin: 'org.springframework.boot'
@@ -49,6 +48,7 @@ subprojects {
     dependencyManagement {
 
         dependencies {
+
             dependencySet(group: 'org.springframework.boot', version: "${springBootVersion}") {
                 entry 'spring-boot-starter-jetty'
                 entry 'spring-boot-starter-web-services'

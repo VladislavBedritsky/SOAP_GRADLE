@@ -1,13 +1,14 @@
 apply plugin: 'war'
 
 dependencies {
-    compile project(':backend')
     compile(
             'org.springframework.boot:spring-boot-starter-web',
             'org.apache.tomcat.embed:tomcat-embed-jasper'
     )
 
-    testCompile "junit:junit"
+    testCompile 'junit:junit'
+
+    compile project(':backend')
 }
 
 

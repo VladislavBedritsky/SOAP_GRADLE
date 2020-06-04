@@ -1,23 +1,24 @@
 package org.example.web.rest;
 
 
+import org.example.backend.service.CountryService;
 import org.example.xsd.country.Country;
-import org.example.xsd.country.Currency;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/countries")
 public class CountryController {
 
+    @Autowired
+    private CountryService countryService;
+
     @GetMapping
-    public Country getCountry() {
-        Country country = new Country();
-        country.setId(1);
-        country.setName("Russia");
-        country.setCapital("Moscow");
-        country.setCurrency(Currency.RUB);
-        country.setPopulation("1000");
-        return country;
+    public Country getCountryByName(@RequestParam String name) {
+        return countryService.findCountryByName(name);
     }
 
 }
