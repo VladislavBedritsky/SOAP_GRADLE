@@ -31,7 +31,7 @@ subprojects {
     apply plugin: "java"
     apply plugin: "idea"
     apply plugin: "io.spring.dependency-management"
-    apply plugin: 'org.springframework.boot'
+    apply plugin: "org.springframework.boot"
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -61,6 +61,7 @@ subprojects {
             dependency "com.sun.xml.bind:jaxb-xjc:${jaxb_xjc_version}"
             dependency "mysql:mysql-connector-java:${mysql_version}"
         }
+
     }
 }
 

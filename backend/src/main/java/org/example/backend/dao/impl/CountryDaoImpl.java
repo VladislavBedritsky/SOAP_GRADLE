@@ -1,52 +1,34 @@
 package org.example.backend.dao.impl;
 
 import org.example.backend.dao.CountryDao;
+import org.example.backend.mapper.CountryMapper;
 import org.example.xsd.country.Country;
-import org.example.xsd.country.Currency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Repository
+@PropertySource("classpath:sql-query.properties")
 public class CountryDaoImpl implements CountryDao {
 
-    private static final List<Country> countries = new ArrayList<Country>();
-
-    public CountryDaoImpl() {
-        Country spain = new Country();
-        spain.setId(1);
-        spain.setName("Russia");
-        spain.setCapital("Moscow");
-        spain.setCurrency(Currency.RUB);
-        spain.setPopulation("134");
-
-        countries.add(spain);
-
-        Country poland = new Country();
-        poland.setId(2);
-        poland.setName("Poland");
-        poland.setCapital("Warsaw");
-        poland.setCurrency(Currency.PLN);
-        poland.setPopulation("83");
-
-        countries.add(poland);
-    }
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    @Value("${db.countries.findCountryByName}")
+    private String findCountryByNameQuery;
 
     @Override
-    public Country findCountryByName (String name) {
-        Assert.notNull(name);
-
-        Country result = null;
-
-        for (Country country : countries) {
-            if (name.equals(country.getName())) {
-                result = country;
-            }
+    public Country findCountryByName(String name) {
+        Country country = new Country();
+        try{
+            country = jdbcTemplate.queryForObject(findCountryByNameQuery, new CountryMapper(), name);
+        } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
         }
-
-        return result;
+        return country;
     }
+
 
 }
