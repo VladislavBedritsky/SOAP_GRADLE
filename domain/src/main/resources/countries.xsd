@@ -1,10 +1,53 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.org/xsd/country"
            targetNamespace="http://example.org/xsd/country" elementFormDefault="qualified">
 
+    <!--Find All-->
+    <xs:element name="getAllCountriesRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllCountriesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="listOfDishes" type="tns:country" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="getCountryByNameRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Delete-->
+    <xs:element name="getDeleteCountryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Update-->
+    <xs:element name="getUpdateCountryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="country" type="tns:country"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--Add-->
+    <xs:element name="getAddCountryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="country" type="tns:country"></xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
