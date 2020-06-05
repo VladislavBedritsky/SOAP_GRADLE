@@ -23,7 +23,7 @@ public class CountryDaoImpl implements CountryDao {
     private String findCountryByNameQuery;
     @Value("${db.countries.findAll}")
     private String findAllCountriesQuery;
-    @Value("$db.countries.deleteCountryById}")
+    @Value("${db.countries.deleteCountryById}")
     private String deleteCountryByIdQuery;
     @Value("${db.countries.updateCountryById}")
     private String updateCountryByIdQuery;
@@ -63,7 +63,7 @@ public class CountryDaoImpl implements CountryDao {
         jdbcTemplate.update(
                 updateCountryByIdQuery,
                 country.getName(), country.getPopulation(), country.getCapital(),
-                country.getCurrency(), country.getId()
+                country.getCurrency().toString(), country.getId()
         );
     }
 
@@ -72,7 +72,7 @@ public class CountryDaoImpl implements CountryDao {
         jdbcTemplate.update(
                 addCountryQuery,
                 country.getName(), country.getPopulation(),
-                country.getCapital(), country.getCurrency()
+                country.getCapital(), country.getCurrency().toString()
         );
     }
 
