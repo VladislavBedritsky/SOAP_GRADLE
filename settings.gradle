@@ -4,4 +4,5 @@ include 'ws-rest'
 include 'backend'
 include 'domain'
 include 'ws-soap'
+include 'soap-consumer'
 

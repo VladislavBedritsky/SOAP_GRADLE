@@ -1,3 +1,4 @@
+apply plugin: 'war'
 
 configurations {
     jaxb
@@ -6,7 +7,7 @@ configurations {
 task genJaxb {
     ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
     ext.classesDir = "${buildDir}/classes/jaxb"
-    ext.schema = "src/main/resources/countries.xsd"
+    ext.schema = "http://localhost:8080/ws/countries.wsdl"
 
     outputs.dir classesDir
 
@@ -39,12 +40,10 @@ task genJaxb {
     }
 }
 
-jar {
-    from genJaxb.classesDir
-}
-
 dependencies {
     compile(
+            'org.springframework.boot:spring-boot-starter-web-services',
+            'org.apache.tomcat.embed:tomcat-embed-jasper',
             'wsdl4j:wsdl4j'
     )
     jaxb("com.sun.xml.bind:jaxb-xjc:2.2.4-1")
@@ -53,10 +52,10 @@ dependencies {
     testCompile "junit:junit"
 }
 
-bootJar {
+bootWar {
     enabled = false
 }
 
-jar {
+war {
     enabled = true
 }
