@@ -1,0 +1,12 @@
+apply plugin: 'war'
+
+dependencies {
+    compile(
+            'org.springframework.boot:spring-boot-starter-web-services',
+            'org.apache.tomcat.embed:tomcat-embed-jasper'
+    )
+
+    testCompile 'junit:junit'
+
+    compile project(':backend')
+}

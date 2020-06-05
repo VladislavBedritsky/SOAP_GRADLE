@@ -1,0 +1,11 @@
+
+DROP TABLE IF EXISTS countries;
+
+CREATE TABLE countries(
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR (100) NOT NULL,
+  population VARCHAR (100) NOT NULL,
+  capital VARCHAR (100) NOT NULL,
+  currency VARCHAR (100) NOT NULL,
+  PRIMARY KEY (id)
+);
